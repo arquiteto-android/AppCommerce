@@ -1,4 +1,3 @@
-
 # Created by https://www.gitignore.io/api/kotlin,android,androidstudio
 # Edit at https://www.gitignore.io/?templates=kotlin,android,androidstudio
 
@@ -120,6 +119,7 @@ output.json
 *.ipr
 *~
 *.swp
+.idea/
 
 # Android Patch
 
