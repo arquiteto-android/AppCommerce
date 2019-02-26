@@ -1,6 +1,12 @@
 # AppCommerce
 Aplicativo de mobile-commerce desenvolvido durante o treinamento Arquiteto Android.
 
+<img align="left" height="200" src="https://user-images.githubusercontent.com/876772/53441067-c57ad900-39e4-11e9-8430-777d49b0950a.png">
+<img align="left" height="200" src="https://user-images.githubusercontent.com/876772/53441068-c57ad900-39e4-11e9-902c-0d7f8a89e350.png">
+<img align="left" height="200" src="https://user-images.githubusercontent.com/876772/53441069-c57ad900-39e4-11e9-95cc-6d2a064b3d86.png">
+<img height="200" src="https://user-images.githubusercontent.com/876772/53441070-c6136f80-39e4-11e9-8693-5b0b0a09dd41.png">
+
+
 Pré-requisitos
 --------------
 - Android SDK 28 ou mais novo
