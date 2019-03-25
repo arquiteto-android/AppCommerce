@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		xmlns:tools="http://schemas.android.com/tools"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		tools:context=".ProductDetailActivity">
+
+	<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:orientation="vertical">
+
+		<ImageView
+				android:layout_width="match_parent"
+				android:layout_height="320dp"
+				android:src="@drawable/camiseta_mockup"
+				android:scaleType="centerCrop"
+				android:adjustViewBounds="true"/>
+
+		<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="Titulo do Produto"
+				android:textAppearance="@android:style/TextAppearance.Medium"
+				android:layout_marginLeft="8dp"
+				android:layout_marginTop="8dp"/>
+
+		<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="R$ 89,90"
+				android:textAppearance="@android:style/TextAppearance.Small"
+				android:layout_marginLeft="8dp"
+				android:layout_marginTop="8dp"/>
+		
+		<Button
+				android:layout_width="match_parent"
+				android:layout_height="50dp"
+				android:text="@string/product_detail_button_comprar"
+				android:background="@color/colorAccent"
+				android:layout_marginTop="8dp"
+				android:layout_marginLeft="8dp"
+				android:layout_marginRight="8dp"
+				android:textColor="@android:color/white"/>
+
+		<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/product_detail_descricao"
+				android:textAppearance="@android:style/TextAppearance.Medium"
+				android:layout_marginLeft="8dp"
+				android:layout_marginTop="8dp"/>
+
+		<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="asdsa dsa dsa dsa dsadsadsadsad sad as dsadsadsadsadsa sadsd sa dsad sad sadsa"
+				android:layout_marginLeft="8dp"
+				android:layout_marginTop="8dp"
+				android:textAppearance="@android:style/TextAppearance.Small"/>
+
+	</LinearLayout>
+
+</ScrollView>
