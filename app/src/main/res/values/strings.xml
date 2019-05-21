@@ -5,8 +5,6 @@
 	<string name="title_categorias_populares">Categorias Populares</string>
 	<string name="title_produtos_recentes">Produtos Recentes</string>
 	<string name="title_activity_product_detail">ProductDetailActivity</string>
-	<string name="product_detail_button_comprar">COMPRAR</string>
-	<string name="product_detail_descricao">Descrição</string>
 
 	<!--Menu Drawer-->
 	<string name="menu_drawer_home">Home</string>
@@ -17,4 +15,10 @@
 	<string name="menu_drawer_sair">Sair</string>
 	<string name="toggle_open">Open</string>
 	<string name="toggle_close">Close</string>
+
+	<!--Detalhe de Produto-->
+	<string name="product_detail_button_comprar">COMPRAR</string>
+	<string name="product_detail_descricao">Descrição</string>
+	<string name="product_detail_cor">Cor</string>
+	<string name="product_detail_tamanho">Tamanho</string>
 </resources>

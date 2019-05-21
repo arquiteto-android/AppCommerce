@@ -1,66 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-		xmlns:android="http://schemas.android.com/apk/res/android"
-		xmlns:app="http://schemas.android.com/apk/res-auto"
-		xmlns:tools="http://schemas.android.com/tools"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		tools:context=".ProductDetailActivity">
 
-	<LinearLayout
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+				xmlns:app="http://schemas.android.com/apk/res-auto"
+				xmlns:tools="http://schemas.android.com/tools"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent">
+
+	<com.google.android.material.appbar.AppBarLayout
+			android:id="@+id/app_bar_layout"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content">
+
+		<include layout="@layout/menu_toolbar_layout"
+				 android:layout_width="match_parent"
+				 android:layout_height="?attr/actionBarSize" />
+
+	</com.google.android.material.appbar.AppBarLayout>
+
+	<androidx.core.widget.NestedScrollView
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			android:orientation="vertical">
+			android:layout_below="@id/app_bar_layout"
+			tools:context=".ProductDetailActivity">
 
-		<ImageView
+		<LinearLayout
 				android:layout_width="match_parent"
-				android:layout_height="320dp"
-				android:src="@drawable/camiseta_mockup"
-				android:scaleType="centerCrop"
-				android:adjustViewBounds="true"/>
+				android:layout_height="match_parent"
+				android:orientation="vertical">
 
-		<TextView
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:text="Titulo do Produto"
-				android:textAppearance="@android:style/TextAppearance.Medium"
-				android:layout_marginLeft="8dp"
-				android:layout_marginTop="8dp"/>
+			<ImageView
+					android:layout_width="match_parent"
+					android:layout_height="320dp"
+					android:src="@drawable/camiseta_mockup"
+					android:scaleType="centerCrop"
+					android:adjustViewBounds="true"/>
 
-		<TextView
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:text="R$ 89,90"
-				android:textAppearance="@android:style/TextAppearance.Small"
-				android:layout_marginLeft="8dp"
-				android:layout_marginTop="8dp"/>
-		
-		<Button
-				android:layout_width="match_parent"
-				android:layout_height="50dp"
-				android:text="@string/product_detail_button_comprar"
-				android:background="@color/colorAccent"
-				android:layout_marginTop="8dp"
-				android:layout_marginLeft="8dp"
-				android:layout_marginRight="8dp"
-				android:textColor="@android:color/white"/>
+			<TextView
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:text="R$ 89,90"
+					android:textAppearance="@android:style/TextAppearance.Medium"
+					android:layout_marginLeft="8dp"
+					android:layout_marginTop="8dp"/>
 
-		<TextView
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:text="@string/product_detail_descricao"
-				android:textAppearance="@android:style/TextAppearance.Medium"
-				android:layout_marginLeft="8dp"
-				android:layout_marginTop="8dp"/>
+			<TextView
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:text="@string/product_detail_cor"
+					android:textAppearance="@android:style/TextAppearance.Medium"
+					android:layout_marginLeft="8dp"
+					android:layout_marginTop="8dp"/>
 
-		<TextView
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:text="asdsa dsa dsa dsa dsadsadsadsad sad as dsadsadsadsadsa sadsd sa dsad sad sadsa"
-				android:layout_marginLeft="8dp"
-				android:layout_marginTop="8dp"
-				android:textAppearance="@android:style/TextAppearance.Small"/>
+			<com.google.android.material.chip.ChipGroup
+					android:id="@+id/chip_group_color"
+					android:layout_marginLeft="8dp"
+					android:layout_marginTop="8dp"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					app:singleSelection="true">
 
-	</LinearLayout>
+				<com.google.android.material.chip.Chip
+						style="@style/Widget.MaterialComponents.Chip.Choice"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="Branco"
+						android:checkable="true"/>
 
-</ScrollView>
+				<com.google.android.material.chip.Chip
+						style="@style/Widget.MaterialComponents.Chip.Choice"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="Preta"
+						android:checkable="true"/>
+
+			</com.google.android.material.chip.ChipGroup>
+
+			<TextView
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:text="@string/product_detail_tamanho"
+					android:textAppearance="@android:style/TextAppearance.Medium"
+					android:layout_marginLeft="8dp"
+					android:layout_marginTop="8dp"/>
+
+			<com.google.android.material.chip.ChipGroup
+					android:id="@+id/chip_group_tamanho"
+					android:layout_marginLeft="8dp"
+					android:layout_marginTop="8dp"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					app:singleSelection="true">
+
+				<com.google.android.material.chip.Chip
+						style="@style/Widget.MaterialComponents.Chip.Choice"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="P"
+						android:checkable="true"/>
+
+				<com.google.android.material.chip.Chip
+						style="@style/Widget.MaterialComponents.Chip.Choice"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="M"
+						android:checkable="true"/>
+
+			</com.google.android.material.chip.ChipGroup>
+
+			<Button
+					android:layout_width="match_parent"
+					android:layout_height="50dp"
+					android:text="@string/product_detail_button_comprar"
+					android:background="@color/colorAccent"
+					android:layout_marginTop="8dp"
+					android:layout_marginLeft="8dp"
+					android:layout_marginRight="8dp"
+					android:textColor="@android:color/white"/>
+
+			<TextView
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:text="@string/product_detail_descricao"
+					android:textAppearance="@android:style/TextAppearance.Medium"
+					android:layout_marginLeft="8dp"
+					android:layout_marginTop="8dp"/>
+
+			<TextView
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:text="asdsa dsa dsa dsa dsadsadsadsad sad as dsadsadsadsadsa sadsd sa dsad sad sadsa"
+					android:layout_marginLeft="8dp"
+					android:layout_marginTop="8dp"
+					android:layout_marginBottom="8dp"
+					android:textAppearance="@android:style/TextAppearance.Small"/>
+
+		</LinearLayout>
+
+	</androidx.core.widget.NestedScrollView>
+</RelativeLayout>
