@@ -1,24 +1,31 @@
 <resources>
-	<string name="app_name">AppCommerce</string>
+    <string name="app_name">AppCommerce</string>
 
-	<!--Strings da tela principal-->
-	<string name="title_categorias_populares">Categorias Populares</string>
-	<string name="title_produtos_recentes">Produtos Recentes</string>
-	<string name="title_activity_product_detail">ProductDetailActivity</string>
+    <!--Strings da tela principal-->
+    <string name="title_categorias_populares">Categorias Populares</string>
+    <string name="title_produtos_recentes">Produtos Recentes</string>
+    <string name="title_activity_product_detail">ProductDetailActivity</string>
 
-	<!--Menu Drawer-->
-	<string name="menu_drawer_home">Home</string>
-	<string name="menu_drawer_minha_conta">Minha Conta</string>
-	<string name="menu_drawer_categorias">Categorias</string>
-	<string name="menu_drawer_minhas_compras">Minhas Compras</string>
-	<string name="menu_drawer_meu_carrinho">Meu Carrinho</string>
-	<string name="menu_drawer_sair">Sair</string>
-	<string name="toggle_open">Open</string>
-	<string name="toggle_close">Close</string>
+    <!--Menu Drawer-->
+    <string name="menu_drawer_home">Home</string>
+    <string name="menu_drawer_minha_conta">Minha Conta</string>
+    <string name="menu_drawer_categorias">Categorias</string>
+    <string name="menu_drawer_minhas_compras">Minhas Compras</string>
+    <string name="menu_drawer_meu_carrinho">Meu Carrinho</string>
+    <string name="menu_drawer_sair">Sair</string>
+    <string name="toggle_open">Open</string>
+    <string name="toggle_close">Close</string>
 
-	<!--Detalhe de Produto-->
-	<string name="product_detail_button_comprar">COMPRAR</string>
-	<string name="product_detail_descricao">Descrição</string>
-	<string name="product_detail_cor">Cor</string>
-	<string name="product_detail_tamanho">Tamanho</string>
+    <!--Detalhe de Produto-->
+    <string name="product_detail_button_comprar">COMPRAR</string>
+    <string name="product_detail_descricao">Descrição</string>
+    <string name="product_detail_cor">Cor</string>
+    <string name="product_detail_tamanho">Tamanho</string>
+
+    <!--Cadastro de Usuario-->
+    <string name="user_register_cadastrar">CADASTRAR</string>
+    <string name="user_register_senha">Senha</string>
+    <string name="user_register_email">Email</string>
+    <string name="user_register_nome">Nome</string>
+    <string name="user_register_title">Cadastro de Usuário</string>
 </resources>
