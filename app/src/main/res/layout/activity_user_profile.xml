@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:tools="http://schemas.android.com/tools"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical"
+		tools:context=".UserProfileActivity"
+		android:gravity="center">
+
+	<com.google.android.material.appbar.AppBarLayout
+			android:id="@+id/app_bar_layout"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content">
+
+		<include layout="@layout/menu_toolbar_layout"
+		         android:layout_width="match_parent"
+		         android:layout_height="?attr/actionBarSize" />
+
+	</com.google.android.material.appbar.AppBarLayout>
+
+	<ScrollView
+			android:layout_marginTop="8dp"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
+
+		<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:orientation="vertical"
+				android:gravity="center">
+
+			<ImageView
+					android:id="@+id/iv_profile_image"
+					android:layout_width="80dp"
+					android:layout_height="80dp"
+					android:src="@drawable/profile_image"/>
+
+			<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="horizontal">
+
+				<com.google.android.material.textfield.TextInputLayout
+						android:id="@+id/txt_layout_name"
+						style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+						android:layout_width="0dp"
+						android:layout_height="wrap_content"
+						android:layout_marginTop="8dp"
+						android:layout_marginLeft="8dp"
+						android:layout_marginRight="4dp"
+						android:hint="@string/user_register_nome"
+						android:layout_weight="1">
+
+					<com.google.android.material.textfield.TextInputEditText
+							android:id="@+id/txt_edit_name"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:inputType="textCapWords"/>
+
+				</com.google.android.material.textfield.TextInputLayout>
+
+				<com.google.android.material.textfield.TextInputLayout
+						android:id="@+id/txt_layout_surname"
+						style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+						android:layout_width="0dp"
+						android:layout_height="wrap_content"
+						android:layout_marginTop="8dp"
+						android:layout_marginLeft="4dp"
+						android:layout_marginRight="8dp"
+						android:hint="@string/user_profile_sobrenome"
+						android:layout_weight="1">
+
+					<com.google.android.material.textfield.TextInputEditText
+							android:id="@+id/txt_edit_surname"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:inputType="textCapWords"/>
+
+				</com.google.android.material.textfield.TextInputLayout>
+
+
+			</LinearLayout>
+
+			<com.google.android.material.textfield.TextInputLayout
+					android:id="@+id/txt_layout_email"
+					style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="8dp"
+					android:layout_marginLeft="8dp"
+					android:layout_marginRight="8dp"
+					android:hint="@string/user_register_email">
+
+				<com.google.android.material.textfield.TextInputEditText
+						android:id="@+id/txt_edit_email"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:inputType="textEmailAddress"/>
+
+			</com.google.android.material.textfield.TextInputLayout>
+
+			<TextView
+					android:layout_marginTop="8dp"
+					android:layout_marginLeft="8dp"
+					android:layout_marginRight="8dp"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:text="@string/user_profile_endereco"
+					android:gravity="center"
+					android:textAppearance="@style/TextAppearance.AppCompat.Title"/>
+
+			<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="horizontal"
+					android:weightSum="3">
+
+				<com.google.android.material.textfield.TextInputLayout
+						android:id="@+id/txt_layout_address"
+						style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+						android:layout_width="0dp"
+						android:layout_height="wrap_content"
+						android:layout_marginTop="8dp"
+						android:layout_marginLeft="8dp"
+						android:layout_marginRight="4dp"
+						android:hint="@string/user_profile_rua_avenida"
+						android:layout_weight="2">
+
+					<com.google.android.material.textfield.TextInputEditText
+							android:id="@+id/txt_edit_address"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:inputType="textCapWords"/>
+
+				</com.google.android.material.textfield.TextInputLayout>
+
+				<com.google.android.material.textfield.TextInputLayout
+						android:id="@+id/txt_layout_number"
+						style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+						android:layout_width="0dp"
+						android:layout_height="wrap_content"
+						android:layout_marginTop="8dp"
+						android:layout_marginLeft="4dp"
+						android:layout_marginRight="8dp"
+						android:hint="@string/user_profile_numero"
+						android:layout_weight="1">
+
+					<com.google.android.material.textfield.TextInputEditText
+							android:id="@+id/txt_edit_number"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:inputType="textCapWords"/>
+
+				</com.google.android.material.textfield.TextInputLayout>
+
+
+			</LinearLayout>
+
+			<com.google.android.material.textfield.TextInputLayout
+					android:id="@+id/txt_layout_address2"
+					style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="8dp"
+					android:layout_marginLeft="8dp"
+					android:layout_marginRight="8dp"
+					android:hint="@string/user_profile_complemento_apartamento_bloco">
+
+				<com.google.android.material.textfield.TextInputEditText
+						android:id="@+id/txt_edit_address2"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:inputType="textCapWords"/>
+
+			</com.google.android.material.textfield.TextInputLayout>
+
+			<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="horizontal">
+
+				<Spinner
+						style="@style/Widget.AppCompat.Spinner.DropDown"
+						android:id="@+id/sp_state"
+						android:layout_width="0dp"
+						android:layout_height="wrap_content"
+						android:layout_marginLeft="8dp"
+						android:layout_marginTop="8dp"
+						android:layout_marginRight="4dp"
+						android:entries="@array/states"
+						android:layout_weight="1"/>
+
+				<com.google.android.material.textfield.TextInputLayout
+						android:id="@+id/txt_layout_city"
+						style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+						android:layout_width="0dp"
+						android:layout_height="wrap_content"
+						android:layout_marginTop="8dp"
+						android:layout_marginLeft="4dp"
+						android:layout_marginRight="4dp"
+						android:hint="@string/user_profile_cidade"
+						android:layout_weight="2">
+
+					<com.google.android.material.textfield.TextInputEditText
+							android:id="@+id/txt_edit_city"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:inputType="textCapWords"/>
+
+				</com.google.android.material.textfield.TextInputLayout>
+
+				<com.google.android.material.textfield.TextInputLayout
+						android:id="@+id/txt_layout_cep"
+						style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+						android:layout_width="0dp"
+						android:layout_height="wrap_content"
+						android:layout_marginTop="8dp"
+						android:layout_marginLeft="4dp"
+						android:layout_marginRight="8dp"
+						android:hint="@string/user_profile_cep"
+						android:layout_weight="1">
+
+					<com.google.android.material.textfield.TextInputEditText
+							android:id="@+id/txt_edit_cep"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:inputType="number"/>
+
+				</com.google.android.material.textfield.TextInputLayout>
+
+
+			</LinearLayout>
+
+			<Button android:id="@+id/btn_user_register"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:text="@string/user_profile_atualizar"
+			        android:layout_marginTop="8dp"
+			        android:layout_marginLeft="8dp"
+			        android:layout_marginRight="8dp"
+			        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"/>
+
+		</LinearLayout>
+	</ScrollView>
+</LinearLayout>

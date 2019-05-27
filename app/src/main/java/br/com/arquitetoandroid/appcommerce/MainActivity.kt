@@ -72,7 +72,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 startActivity(intent)
             }
             R.id.nav_account -> {
-                val intent = Intent(this, UserRegisterActivity::class.java)
+                val intent = Intent(this, UserProfileActivity::class.java)
                 startActivity(intent)
             }
             R.id.nav_category -> Toast.makeText(this, "Categoria", Toast.LENGTH_LONG).show()
