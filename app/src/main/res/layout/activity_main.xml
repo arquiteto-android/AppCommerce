@@ -113,26 +113,10 @@
 							android:text="@string/title_produtos_recentes"
 							android:textAppearance="@android:style/TextAppearance.Medium"/>
 
-					<LinearLayout
-							android:id="@+id/ll_product_item"
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:orientation="vertical"
-							android:layout_margin="8dp"
-							android:gravity="center">
-
-						<ImageView
-								android:layout_width="wrap_content"
-								android:layout_height="wrap_content"
-								android:src="@drawable/camiseta_mockup"/>
-
-						<TextView
-								android:layout_width="wrap_content"
-								android:layout_height="wrap_content"
-								android:text="Camiseta XYZ"
-								android:textAppearance="@android:style/TextAppearance.Small"/>
-
-					</LinearLayout>
+					<androidx.recyclerview.widget.RecyclerView
+							android:id="@+id/rv_main_product"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"/>
 
 				</LinearLayout>
 
