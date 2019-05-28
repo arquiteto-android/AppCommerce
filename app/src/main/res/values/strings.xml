@@ -1,78 +1,79 @@
 <resources>
-    <string name="app_name">AppCommerce</string>
+	<string name="app_name">AppCommerce</string>
 
-    <!--Strings da tela principal-->
-    <string name="title_categorias_populares">Categorias Populares</string>
-    <string name="title_produtos_recentes">Produtos Recentes</string>
-    <string name="title_activity_product_detail">ProductDetailActivity</string>
+	<!--Strings da tela principal-->
+	<string name="title_categorias_populares">Categorias Populares</string>
+	<string name="title_produtos_recentes">Produtos Recentes</string>
+	<string name="title_activity_product_detail">ProductDetailActivity</string>
 
-    <!--Menu Drawer-->
-    <string name="menu_drawer_home">Home</string>
-    <string name="menu_drawer_minha_conta">Minha Conta</string>
-    <string name="menu_drawer_categorias">Categorias</string>
-    <string name="menu_drawer_minhas_compras">Minhas Compras</string>
-    <string name="menu_drawer_meu_carrinho">Meu Carrinho</string>
-    <string name="menu_drawer_sair">Sair</string>
-    <string name="toggle_open">Open</string>
-    <string name="toggle_close">Close</string>
+	<!--Menu Drawer-->
+	<string name="menu_drawer_home">Home</string>
+	<string name="menu_drawer_minha_conta">Minha Conta</string>
+	<string name="menu_drawer_categorias">Categorias</string>
+	<string name="menu_drawer_minhas_compras">Minhas Compras</string>
+	<string name="menu_drawer_meu_carrinho">Meu Carrinho</string>
+	<string name="menu_drawer_sair">Sair</string>
+	<string name="toggle_open">Open</string>
+	<string name="toggle_close">Close</string>
 
-    <!--Detalhe de Produto-->
-    <string name="product_detail_button_comprar">COMPRAR</string>
-    <string name="product_detail_descricao">Descrição</string>
-    <string name="product_detail_cor">Cor</string>
-    <string name="product_detail_tamanho">Tamanho</string>
+	<!--Detalhe de Produto-->
+	<string name="product_detail_button_comprar">COMPRAR</string>
+	<string name="product_detail_descricao">Descrição</string>
+	<string name="product_detail_cor">Cor</string>
+	<string name="product_detail_tamanho">Tamanho</string>
 
-    <!--Cadastro de Usuario-->
-    <string name="user_register_cadastrar">CADASTRAR</string>
-    <string name="user_register_senha">Senha</string>
-    <string name="user_register_email">Email</string>
-    <string name="user_register_nome">Nome</string>
-    <string name="user_register_title">Cadastro de Usuário</string>
+	<!--Cadastro de Usuario-->
+	<string name="user_register_cadastrar">CADASTRAR</string>
+	<string name="user_register_senha">Senha</string>
+	<string name="user_register_email">Email</string>
+	<string name="user_register_nome">Nome</string>
+	<string name="user_register_title">Cadastro de Usuário</string>
 
-    <!--Login de Usuario-->
-    <string name="user_login_esqueceu_sua_senha">Esqueceu sua senha?</string>
-    <string name="user_login_entrar">ENTRAR</string>
-    <string name="user_login_nao_cadastro">Não tem cadsatro?</string>
-    <string name="user_login_cadastre_se_aqui">Cadastre-se aqui</string>
-    <string name="user_login_title">Login</string>
+	<!--Login de Usuario-->
+	<string name="user_login_esqueceu_sua_senha">Esqueceu sua senha?</string>
+	<string name="user_login_entrar">ENTRAR</string>
+	<string name="user_login_nao_cadastro">Não tem cadsatro?</string>
+	<string name="user_login_cadastre_se_aqui">Cadastre-se aqui</string>
+	<string name="user_login_title">Login</string>
 
-    <!--Perfil do Usuario-->
-    <string name="user_profile_title">Perfil</string>
-    <string name="user_profile_sobrenome">Sobrenome</string>
-    <string name="user_profile_endereco">Endereço</string>
-    <string name="user_profile_rua_avenida">Rua/Avenida</string>
-    <string name="user_profile_numero">Número</string>
-    <string name="user_profile_complemento_apartamento_bloco">Complemento (Apartamento/Bloco)</string>
-    <string name="user_profile_cidade">Cidade</string>
-    <string name="user_profile_cep">CEP</string>
-    <string name="user_profile_atualizar">ATUALIZAR</string>
-    <string-array name="states">
-        <item>Acre (AC)</item>
-        <item>Alagoas (AL)</item>
-        <item>Amapá (AP)</item>
-        <item>Amazonas (AM)</item>
-        <item>Bahia (BA)</item>
-        <item>Ceará (CE)</item>
-        <item>Distrito Federal (DF)</item>
-        <item>Espírito Santo (ES)</item>
-        <item>Goiás (GO)</item>
-        <item>Maranhão (MA)</item>
-        <item>Mato Grosso (MT)</item>
-        <item>Mato Grosso do Sul (MS)</item>
-        <item>Minas Gerais (MG)</item>
-        <item>Pará (PA)</item>
-        <item>Paraíba (PB)</item>
-        <item>Paraná (PR)</item>
-        <item>Pernambuco (PE)</item>
-        <item>Piauí (PI)</item>
-        <item>Rio de Janeiro (RJ)</item>
-        <item>Rio Grande do Norte (RN)</item>
-        <item>Rio Grande do Sul (RS)</item>
-        <item>Rondônia (RO)</item>
-        <item>Roraima (RR)</item>
-        <item>Santa Catarina (SC)</item>
-        <item>São Paulo (SP)</item>
-        <item>Sergipe (SE)</item>
-        <item>Tocantins (TO)</item>
-    </string-array>
+	<!--Perfil do Usuario-->
+	<string name="user_profile_title">Perfil</string>
+	<string name="user_profile_sobrenome">Sobrenome</string>
+	<string name="user_profile_endereco">Endereço</string>
+	<string name="user_profile_rua_avenida">Rua/Avenida</string>
+	<string name="user_profile_numero">Número</string>
+	<string name="user_profile_complemento_apartamento_bloco">Complemento (Apartamento/Bloco)</string>
+	<string name="user_profile_cidade">Cidade</string>
+	<string name="user_profile_cep">CEP</string>
+	<string name="user_profile_atualizar">ATUALIZAR</string>
+	<string name="product_category_title">Categorias</string>
+	<string-array name="states">
+		<item>Acre (AC)</item>
+		<item>Alagoas (AL)</item>
+		<item>Amapá (AP)</item>
+		<item>Amazonas (AM)</item>
+		<item>Bahia (BA)</item>
+		<item>Ceará (CE)</item>
+		<item>Distrito Federal (DF)</item>
+		<item>Espírito Santo (ES)</item>
+		<item>Goiás (GO)</item>
+		<item>Maranhão (MA)</item>
+		<item>Mato Grosso (MT)</item>
+		<item>Mato Grosso do Sul (MS)</item>
+		<item>Minas Gerais (MG)</item>
+		<item>Pará (PA)</item>
+		<item>Paraíba (PB)</item>
+		<item>Paraná (PR)</item>
+		<item>Pernambuco (PE)</item>
+		<item>Piauí (PI)</item>
+		<item>Rio de Janeiro (RJ)</item>
+		<item>Rio Grande do Norte (RN)</item>
+		<item>Rio Grande do Sul (RS)</item>
+		<item>Rondônia (RO)</item>
+		<item>Roraima (RR)</item>
+		<item>Santa Catarina (SC)</item>
+		<item>São Paulo (SP)</item>
+		<item>Sergipe (SE)</item>
+		<item>Tocantins (TO)</item>
+	</string-array>
 </resources>

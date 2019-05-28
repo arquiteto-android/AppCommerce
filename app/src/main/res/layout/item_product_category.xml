@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		app:cardElevation="8dp"
+		android:padding="8dp"
+		android:layout_margin="8dp">
+
+	<LinearLayout
+			android:orientation="vertical"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:gravity="center"
+			android:padding="8dp"
+			android:background="@android:color/white">
+
+		<ImageView
+				android:id="@+id/iv_category_icon"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:src="@android:drawable/ic_input_get"
+				android:tint="@color/colorPrimary"/>
+
+		<TextView
+				android:id="@+id/tv_category_title"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Camisetas"
+				android:layout_marginTop="8dp"
+				android:textAppearance="@style/TextAppearance.AppCompat.Title"/>
+
+	</LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

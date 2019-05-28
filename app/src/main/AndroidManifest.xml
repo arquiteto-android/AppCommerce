@@ -28,6 +28,8 @@
 		</activity>
 		<activity android:name=".UserProfileActivity">
 		</activity>
+		<activity android:name=".ProductCategoryActivity">
+		</activity>
 	</application>
 
 </manifest>
