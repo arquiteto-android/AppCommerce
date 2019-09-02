@@ -11,7 +11,6 @@ import br.com.arquitetoandroid.appcommerce.model.ProductCategory
 
 class ProductCategoryActivity : AppCompatActivity() {
 
-    lateinit var recyclerCategory: RecyclerView
     lateinit var toolbar: Toolbar
     lateinit var textTitle: TextView
 
@@ -27,20 +26,6 @@ class ProductCategoryActivity : AppCompatActivity() {
 
         textTitle = findViewById(R.id.toolbar_title)
         textTitle.text = getString(R.string.product_category_title)
-
-        recyclerCategory = findViewById(R.id.rv_product_category)
-
-        val arrayCategory = arrayListOf<ProductCategory>(
-            ProductCategory("1", "Camisetas"),
-            ProductCategory("2", "Calças"),
-            ProductCategory("3", "Meias"),
-            ProductCategory("4", "Sapatos")
-        )
-
-        val adapterCategory = ProductCategoryAdapter(arrayCategory, this)
-
-        recyclerCategory.adapter = adapterCategory
-        recyclerCategory.layoutManager = GridLayoutManager(this, 2)
     }
 
     override fun onSupportNavigateUp(): Boolean {

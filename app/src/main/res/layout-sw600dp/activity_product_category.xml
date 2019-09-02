@@ -18,11 +18,25 @@
 
 	</com.google.android.material.appbar.AppBarLayout>
 
-	<fragment
-			android:id="@+id/fragment_product_category"
-			android:name="br.com.arquitetoandroid.appcommerce.ProductCategoryFragment"
+	<LinearLayout
+			android:orientation="horizontal"
 			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			tools:layout="@layout/fragment_product_category"/>
+			android:layout_height="match_parent">
+
+		<fragment
+				android:id="@+id/fragment_product_category"
+				android:name="br.com.arquitetoandroid.appcommerce.ProductCategoryFragment"
+				android:layout_width="0dp"
+				android:layout_height="match_parent"
+				android:layout_weight="1"
+				tools:layout="@layout/fragment_product_category"/>
+
+		<FrameLayout
+				android:id="@+id/fragment_product"
+				android:layout_width="0dp"
+				android:layout_height="match_parent"
+				android:layout_weight="1"/>
+
+	</LinearLayout>
 
 </LinearLayout>
