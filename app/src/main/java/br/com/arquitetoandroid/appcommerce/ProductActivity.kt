@@ -1,9 +1,7 @@
 package br.com.arquitetoandroid.appcommerce
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.GridLayoutManager
@@ -11,15 +9,14 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.arquitetoandroid.appcommerce.adapter.ProductCategoryAdapter
 import br.com.arquitetoandroid.appcommerce.model.ProductCategory
 
-class ProductCategoryActivity : AppCompatActivity(), ProductCategoryFragment.Callback {
+class ProductActivity : AppCompatActivity() {
 
     lateinit var toolbar: Toolbar
     lateinit var textTitle: TextView
-    var isTablet: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_product_category)
+        setContentView(R.layout.activity_product)
 
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -28,29 +25,21 @@ class ProductCategoryActivity : AppCompatActivity(), ProductCategoryFragment.Cal
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
         textTitle = findViewById(R.id.toolbar_title)
-        textTitle.text = getString(R.string.product_category_title)
+        textTitle.text = getString(R.string.product_title)
 
-        isTablet = findViewById<View>(R.id.fragment_product) != null
+        val category = intent.getSerializableExtra("CATEGORY") as ProductCategory
+
+        val args = Bundle()
+        args.putSerializable("CATEGORY", category)
+        val fragment = ProductFragment()
+        fragment.arguments = args
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_product, fragment)
+            .commit()
     }
 
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
-    }
-
-    override fun itemSelected(category: ProductCategory) {
-        if (isTablet) {
-            val args = Bundle()
-            args.putSerializable("CATEGORY", category)
-            val fragment = ProductFragment()
-            fragment.arguments = args
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_product, fragment)
-                .commit()
-        } else {
-            val intent = Intent(this, ProductActivity::class.java)
-            intent.putExtra("CATEGORY", category)
-            startActivity(intent)
-        }
     }
 }

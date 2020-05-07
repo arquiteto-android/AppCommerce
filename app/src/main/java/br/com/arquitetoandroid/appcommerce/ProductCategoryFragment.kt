@@ -23,10 +23,10 @@ class ProductCategoryFragment : Fragment() {
         recyclerCategory = view.findViewById(R.id.rv_product_category)
 
         val arrayCategory = arrayListOf<ProductCategory>(
-            ProductCategory("1", "Camisetas"),
-            ProductCategory("2", "Calças"),
-            ProductCategory("3", "Meias"),
-            ProductCategory("4", "Sapatos")
+            ProductCategory("1", "Camisetas", MainActivity().fillRvProduct()),
+            ProductCategory("2", "Calças", MainActivity().fillRvProduct()),
+            ProductCategory("3", "Meias", MainActivity().fillRvProduct()),
+            ProductCategory("4", "Sapatos", MainActivity().fillRvProduct())
         )
 
         val adapterCategory = ProductCategoryAdapter(arrayCategory, requireContext())
@@ -38,5 +38,8 @@ class ProductCategoryFragment : Fragment() {
 
     }
 
+    interface  Callback {
+        fun itemSelected(category: ProductCategory)
+    }
 
 }
