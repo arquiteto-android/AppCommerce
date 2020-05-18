@@ -1,8 +1,12 @@
 package br.com.arquitetoandroid.appcommerce
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.preference.PreferenceManager
+import android.provider.MediaStore
 import android.view.MenuItem
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -32,6 +36,7 @@ class MainActivity : AppCompatActivity(),
     lateinit var textLogin: TextView
     lateinit var recyclerCategory: RecyclerView
     lateinit var recyclerProduct: RecyclerView
+    lateinit var imageProfile: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,6 +65,8 @@ class MainActivity : AppCompatActivity(),
             val intent = Intent(this, UserLoginActivity::class.java)
             startActivity(intent)
         }
+
+        imageProfile = navigationView.getHeaderView(0).findViewById(R.id.header_profile_image)
 
         recyclerCategory = findViewById(R.id.rv_main_product_category)
 
@@ -147,5 +154,17 @@ class MainActivity : AppCompatActivity(),
         val intent = Intent(this, ProductActivity::class.java)
         intent.putExtra("CATEGORY", category)
         startActivity(intent)
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        val profileImage = PreferenceManager.getDefaultSharedPreferences(this).getString(MediaStore.EXTRA_OUTPUT, null)
+
+        if (profileImage != null) {
+            imageProfile.setImageURI(Uri.parse(profileImage))
+        } else {
+            imageProfile.setImageResource(R.drawable.profile_image)
+        }
     }
 }
