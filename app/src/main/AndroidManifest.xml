@@ -32,6 +32,8 @@
 		</activity>
 		<activity android:name=".ProductActivity">
 		</activity>
+		<activity android:name=".SettingsActivity">
+		</activity>
 	</application>
 
 </manifest>
