@@ -84,4 +84,5 @@
     <string name="cart_title">Meu Carrinho</string>
     <string name="cart_button_finish">FINALIZAR</string>
 	<string name="cart_label_total">Total:</string>
+    <string name="order_title">Minhas Compras</string>
 </resources>

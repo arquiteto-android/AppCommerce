@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cv_product_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
+    android:layout_marginTop="8dp"
+    android:background="@android:color/white"
+    app:cardElevation="2dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/tv_label_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Número:"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tv_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="8998897h6h877"
+            android:layout_toRightOf="@id/tv_label_id"
+            android:layout_alignBaseline="@id/tv_label_id"
+            android:layout_marginLeft="8dp"/>
+
+        <TextView
+            android:id="@+id/tv_label_method"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pagamento:"
+            android:layout_below="@id/tv_label_id"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tv_method"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cartão de Crédito"
+            android:layout_toRightOf="@id/tv_label_method"
+            android:layout_alignBaseline="@id/tv_label_method"
+            android:layout_marginLeft="8dp"/>
+
+        <TextView
+            android:id="@+id/tv_label_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Status:"
+            android:layout_below="@id/tv_label_method"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tv_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pago"
+            android:layout_toRightOf="@id/tv_label_status"
+            android:layout_alignBaseline="@id/tv_label_status"
+            android:layout_marginLeft="8dp"/>
+
+        <TextView
+            android:id="@+id/tv_label_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Data/Hora:"
+            android:layout_below="@id/tv_label_status"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12/03/2019 16:45:23"
+            android:layout_toRightOf="@id/tv_label_time"
+            android:layout_alignBaseline="@id/tv_label_time"
+            android:layout_marginLeft="8dp"/>
+
+        <TextView
+            android:id="@+id/tv_label_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total:"
+            android:layout_below="@id/tv_label_time"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tv_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="R$ 190,90"
+            android:layout_toRightOf="@id/tv_label_total"
+            android:layout_alignBaseline="@id/tv_label_total"
+            android:layout_marginLeft="8dp"/>
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_margin="16dp"
+            app:srcCompat="@drawable/ic_menu_cart_black" />
+
+
+    </RelativeLayout>
+
+</com.google.android.material.card.MaterialCardView>

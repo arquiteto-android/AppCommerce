@@ -35,8 +35,9 @@
 		<activity android:name=".SettingsActivity">
 		</activity>
         <activity android:name=".CartActivity"/>
+		<activity android:name=".OrderActivity" />
 
-        <provider
+		<provider
 				android:authorities="${applicationId}.fileprovider"
 				android:name="androidx.core.content.FileProvider"
 				android:exported="false"
