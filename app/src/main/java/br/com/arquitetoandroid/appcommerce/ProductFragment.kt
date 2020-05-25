@@ -19,9 +19,9 @@ class ProductFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if (arguments != null) {
-            arrayProduct = (arguments?.getSerializable("CATEGORY") as ProductCategory).products
-        }
+//        if (arguments != null) {
+//            arrayProduct = (arguments?.getSerializable("CATEGORY") as ProductCategory).products
+//        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

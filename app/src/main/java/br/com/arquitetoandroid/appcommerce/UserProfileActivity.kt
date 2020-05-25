@@ -59,7 +59,7 @@ class UserProfileActivity : AppCompatActivity() {
     @Throws(IOException::class)
     private fun createImageFile(): File {
         val timesTamp: String = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
-        val storageDir: File = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        val storageDir: File? = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
         return File.createTempFile(
             "PROFILE_${timesTamp}",
             ".jpg",

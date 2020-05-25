@@ -1,15 +1,18 @@
 package br.com.arquitetoandroid.appcommerce.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import java.io.Serializable
+import java.util.*
 
+@Entity(tableName = "orders")
 data class Order (
-    val id: String,
-    val time: Long,
-    val status: Status,
-    val method: Method,
-    val user: User,
-    val products: MutableList<OrderedProduct> = emptyList<OrderedProduct>().toMutableList(),
-    var price: Double = products.sumByDouble { it.quantity * it.product.price }) : Serializable {
+    @PrimaryKey val id: String = UUID.randomUUID().toString(),
+    var time: Long,
+    var status: Status,
+    var method: Method,
+    var userId: String,
+    var price: Double) : Serializable {
 
 
     enum class Status(val message: String) {

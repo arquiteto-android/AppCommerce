@@ -1,5 +1,12 @@
 package br.com.arquitetoandroid.appcommerce.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import java.io.Serializable
+import java.util.*
 
-data class ProductImage (val id: String, val path: String) : Serializable
+@Entity(tableName = "product_images")
+data class ProductImage (
+    @PrimaryKey val id: String = UUID.randomUUID().toString(),
+    var productId: String,
+    var path: String) : Serializable

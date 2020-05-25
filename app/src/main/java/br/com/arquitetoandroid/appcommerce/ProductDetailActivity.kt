@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import br.com.arquitetoandroid.appcommerce.model.Product
+import br.com.arquitetoandroid.appcommerce.model.ProductColor
+import br.com.arquitetoandroid.appcommerce.model.ProductSize
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 
@@ -51,7 +53,7 @@ class ProductDetailActivity : AppCompatActivity() {
     }
 
     fun fillChipColor() {
-        val colors = product.colors
+        val colors = emptyArray<ProductColor>()//product.colors
 
         for (color in colors) {
             val chip = Chip(ContextThemeWrapper(chipGroupColor.context, R.style.Widget_MaterialComponents_Chip_Choice))
@@ -66,7 +68,7 @@ class ProductDetailActivity : AppCompatActivity() {
     }
 
     fun fillChipSize() {
-        val sizes = product.sizes
+        val sizes = emptyArray<ProductSize>()//product.sizes
 
         for (size in sizes) {
             val chip = Chip(ContextThemeWrapper(chipGroupSize.context, R.style.Widget_MaterialComponents_Chip_Choice))

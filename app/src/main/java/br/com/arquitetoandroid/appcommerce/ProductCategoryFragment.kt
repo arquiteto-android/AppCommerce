@@ -22,14 +22,7 @@ class ProductCategoryFragment : Fragment() {
 
         recyclerCategory = view.findViewById(R.id.rv_product_category)
 
-        val arrayCategory = arrayListOf<ProductCategory>(
-            ProductCategory("1", "Camisetas", MainActivity().fillRvProduct()),
-            ProductCategory("2", "Calças", MainActivity().fillRvProduct()),
-            ProductCategory("3", "Meias", MainActivity().fillRvProduct()),
-            ProductCategory("4", "Sapatos", MainActivity().fillRvProduct())
-        )
-
-        val adapterCategory = ProductCategoryAdapter(arrayCategory, requireContext())
+        val adapterCategory = ProductCategoryAdapter(emptyList(), requireContext())
 
         recyclerCategory.adapter = adapterCategory
         recyclerCategory.layoutManager = GridLayoutManager(requireContext(), 2)

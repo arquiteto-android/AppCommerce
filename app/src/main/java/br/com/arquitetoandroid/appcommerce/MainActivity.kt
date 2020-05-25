@@ -70,47 +70,17 @@ class MainActivity : AppCompatActivity(),
 
         recyclerCategory = findViewById(R.id.rv_main_product_category)
 
-        val arrayCategory = arrayListOf<ProductCategory>(ProductCategory("1", "Camisetas"),
-            ProductCategory("2", "Calças", fillRvProduct()),
-            ProductCategory("3", "Meias"),
-            ProductCategory("4", "Sapatos"))
-
-        val adapterCategory = ProductCategoryAdapter(arrayCategory, this)
+        val adapterCategory = ProductCategoryAdapter(emptyList(), this)
 
         recyclerCategory.adapter = adapterCategory
         recyclerCategory.layoutManager = LinearLayoutManager(this,  LinearLayoutManager.HORIZONTAL, false)
 
         recyclerProduct = findViewById(R.id.rv_main_product)
 
-        val adapterProduct = ProductAdapter(fillRvProduct(), this)
+        val adapterProduct = ProductAdapter(emptyList(), this)
 
         recyclerProduct.adapter = adapterProduct
         recyclerProduct.layoutManager = LinearLayoutManager(this,  LinearLayoutManager.HORIZONTAL, false)
-    }
-
-    fun fillRvProduct(): List<Product> {
-
-        val product1: Product = Product(
-            "1",
-            "Camiseta 89",
-            ProductCategory("id", "Camisetas"),
-            "Camiseta super leve para fazer exercicios.",
-            19.90,
-            arrayListOf(ProductColor("1", "Branco", "#ffffff"), ProductColor("2", "Preta", "#000000")),
-            arrayListOf(ProductSize("1", "P"), ProductSize("1", "M")),
-            emptyList())
-
-        val product2: Product = Product(
-            "1",
-            "Calça Jeans",
-            ProductCategory("id", "Calças"),
-            "Calça impermeavel com proteção de chuva",
-            109.00,
-            arrayListOf(ProductColor("1", "Branco", "#ffffff"), ProductColor("2", "Preta", "#000000")),
-            arrayListOf(ProductSize("1", "G"), ProductSize("1", "GG")),
-            emptyList())
-
-        return arrayListOf(product1, product2)
     }
 
     override fun onBackPressed() {

@@ -21,31 +21,7 @@ class CartFragment  : Fragment() {
 
         recyclerCart = view.findViewById(R.id.rv_cart)
 
-        val product1: Product = Product(
-                "1",
-                "Camiseta 89",
-                ProductCategory("id", "Camisetas"),
-                "Camiseta super leve para fazer exercicios.",
-                19.90,
-                arrayListOf(ProductColor("1", "Branco", "#ffffff"), ProductColor("2", "Preta", "#000000")),
-                arrayListOf(ProductSize("1", "P"), ProductSize("1", "M")),
-                emptyList())
-
-        val product2: Product = Product(
-                "1",
-                "Calça Jeans",
-                ProductCategory("id", "Calças"),
-                "Calça impermeavel com proteção de chuva",
-                109.00,
-                arrayListOf(ProductColor("1", "Branco", "#ffffff"), ProductColor("2", "Preta", "#000000")),
-                arrayListOf(ProductSize("1", "G"), ProductSize("1", "GG")),
-                emptyList())
-
-        val adapterCart = CartAdapter(arrayListOf(OrderedProduct("1", product1, 3),
-                OrderedProduct("2", product2, 5),
-                OrderedProduct("2", product2, 1),
-                OrderedProduct("1", product1, 1)),
-                requireContext())
+        val adapterCart = CartAdapter(emptyList(), requireContext())
 
         recyclerCart.adapter = adapterCart
         recyclerCart.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
