@@ -23,6 +23,7 @@ import br.com.arquitetoandroid.appcommerce.model.Product
 import br.com.arquitetoandroid.appcommerce.model.ProductCategory
 import br.com.arquitetoandroid.appcommerce.model.ProductColor
 import br.com.arquitetoandroid.appcommerce.model.ProductSize
+import br.com.arquitetoandroid.appcommerce.repository.ProductsRepository
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity(),
@@ -37,10 +38,13 @@ class MainActivity : AppCompatActivity(),
     lateinit var recyclerCategory: RecyclerView
     lateinit var recyclerProduct: RecyclerView
     lateinit var imageProfile: ImageView
+    lateinit var productsRepository: ProductsRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        productsRepository = ProductsRepository(application)
 
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -70,14 +74,14 @@ class MainActivity : AppCompatActivity(),
 
         recyclerCategory = findViewById(R.id.rv_main_product_category)
 
-        val adapterCategory = ProductCategoryAdapter(emptyList(), this)
+        val adapterCategory = ProductCategoryAdapter(productsRepository.featuredCategories, this)
 
         recyclerCategory.adapter = adapterCategory
         recyclerCategory.layoutManager = LinearLayoutManager(this,  LinearLayoutManager.HORIZONTAL, false)
 
         recyclerProduct = findViewById(R.id.rv_main_product)
 
-        val adapterProduct = ProductAdapter(emptyList(), this)
+        val adapterProduct = ProductAdapter(productsRepository.featuredProducts, this)
 
         recyclerProduct.adapter = adapterProduct
         recyclerProduct.layoutManager = LinearLayoutManager(this,  LinearLayoutManager.HORIZONTAL, false)

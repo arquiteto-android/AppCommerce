@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.arquitetoandroid.appcommerce.adapter.ProductCategoryAdapter
 import br.com.arquitetoandroid.appcommerce.model.ProductCategory
+import br.com.arquitetoandroid.appcommerce.repository.ProductsRepository
 
 class ProductCategoryFragment : Fragment() {
 
@@ -22,7 +23,9 @@ class ProductCategoryFragment : Fragment() {
 
         recyclerCategory = view.findViewById(R.id.rv_product_category)
 
-        val adapterCategory = ProductCategoryAdapter(emptyList(), requireContext())
+        val productsRepository = ProductsRepository(activity!!.application)
+
+        val adapterCategory = ProductCategoryAdapter(productsRepository.allCategories, requireContext())
 
         recyclerCategory.adapter = adapterCategory
         recyclerCategory.layoutManager = GridLayoutManager(requireContext(), 2)

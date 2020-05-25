@@ -10,18 +10,19 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.arquitetoandroid.appcommerce.adapter.ProductAdapter
 import br.com.arquitetoandroid.appcommerce.model.Product
 import br.com.arquitetoandroid.appcommerce.model.ProductCategory
+import br.com.arquitetoandroid.appcommerce.repository.ProductsRepository
 
 class ProductFragment : Fragment() {
 
     lateinit var recyclerProduct: RecyclerView
-    lateinit var arrayProduct: List<Product>
+    lateinit var category: ProductCategory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-//        if (arguments != null) {
-//            arrayProduct = (arguments?.getSerializable("CATEGORY") as ProductCategoryDao).products
-//        }
+        if (arguments != null) {
+            category = (arguments?.getSerializable("CATEGORY") as ProductCategory)
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -30,7 +31,10 @@ class ProductFragment : Fragment() {
 
         recyclerProduct = view.findViewById(R.id.rv_product)
 
-        val adapterProduct = ProductAdapter(arrayProduct, requireContext())
+        val productsRepository = ProductsRepository(activity!!.application)
+
+        val adapterProduct = ProductAdapter(productsRepository.loadProductsByCategory(category.id),
+            requireContext())
 
         recyclerProduct.adapter = adapterProduct
         recyclerProduct.layoutManager = GridLayoutManager(requireContext(), 3)

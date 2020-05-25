@@ -11,6 +11,8 @@ import androidx.core.content.ContextCompat
 import br.com.arquitetoandroid.appcommerce.model.Product
 import br.com.arquitetoandroid.appcommerce.model.ProductColor
 import br.com.arquitetoandroid.appcommerce.model.ProductSize
+import br.com.arquitetoandroid.appcommerce.model.ProductVariants
+import br.com.arquitetoandroid.appcommerce.repository.ProductsRepository
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 
@@ -18,17 +20,24 @@ class ProductDetailActivity : AppCompatActivity() {
 
     lateinit var toolbar: Toolbar
     lateinit var textTitle: TextView
-    lateinit var product: Product
     lateinit var productPrice: TextView
     lateinit var productDesc: TextView
     lateinit var chipGroupColor: ChipGroup
     lateinit var chipGroupSize: ChipGroup
 
+    lateinit var product: Product
+    lateinit var productVariants: ProductVariants
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_detail_const)
 
+        val productsRepository = ProductsRepository(application)
+
         product = intent.getSerializableExtra("PRODUCT") as Product
+
+        productVariants = productsRepository.loadProductById(product.id)
+        product = productVariants.product
 
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -53,7 +62,7 @@ class ProductDetailActivity : AppCompatActivity() {
     }
 
     fun fillChipColor() {
-        val colors = emptyArray<ProductColor>()//product.colors
+        val colors = productVariants.colors
 
         for (color in colors) {
             val chip = Chip(ContextThemeWrapper(chipGroupColor.context, R.style.Widget_MaterialComponents_Chip_Choice))
@@ -68,7 +77,7 @@ class ProductDetailActivity : AppCompatActivity() {
     }
 
     fun fillChipSize() {
-        val sizes = emptyArray<ProductSize>()//product.sizes
+        val sizes = productVariants.sizes
 
         for (size in sizes) {
             val chip = Chip(ContextThemeWrapper(chipGroupSize.context, R.style.Widget_MaterialComponents_Chip_Choice))
