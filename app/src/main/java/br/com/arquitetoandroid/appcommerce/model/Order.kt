@@ -14,7 +14,6 @@ data class Order (
     var userId: String,
     var price: Double) : Serializable {
 
-
     enum class Status(val message: String) {
         PENDENT("Pendente"),
         PAID("Pago"),

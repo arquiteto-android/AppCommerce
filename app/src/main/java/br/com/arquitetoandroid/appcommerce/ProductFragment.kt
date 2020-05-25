@@ -20,7 +20,7 @@ class ProductFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
 //        if (arguments != null) {
-//            arrayProduct = (arguments?.getSerializable("CATEGORY") as ProductCategory).products
+//            arrayProduct = (arguments?.getSerializable("CATEGORY") as ProductCategoryDao).products
 //        }
     }
 
