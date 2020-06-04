@@ -11,7 +11,9 @@ import br.com.arquitetoandroid.appcommerce.model.Order
 import java.text.SimpleDateFormat
 import java.util.*
 
-class OrderAdapter(val list: List<Order>, val context: Context) : RecyclerView.Adapter<OrderAdapter.ViewHolder>() {
+class OrderAdapter(val context: Context) : RecyclerView.Adapter<OrderAdapter.ViewHolder>() {
+
+    var list: List<Order> = emptyList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_order, parent, false)

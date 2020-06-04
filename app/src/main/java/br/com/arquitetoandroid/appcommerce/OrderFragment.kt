@@ -5,15 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.arquitetoandroid.appcommerce.adapter.OrderAdapter
-import br.com.arquitetoandroid.appcommerce.model.*
-import java.util.*
+import br.com.arquitetoandroid.appcommerce.viewmodel.OrderViewModel
 
 class OrderFragment : Fragment() {
 
     lateinit var recyclerOrder: RecyclerView
+
+    private val orderViewModel by viewModels<OrderViewModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -21,7 +24,12 @@ class OrderFragment : Fragment() {
 
         recyclerOrder = view.findViewById(R.id.rv_order)
 
-        val adapterOrder = OrderAdapter(emptyList(), requireContext())
+        val adapterOrder = OrderAdapter(requireContext())
+
+        orderViewModel.getOrdersByUser("").observe(this, Observer {
+            adapterOrder.list = it
+            adapterOrder.notifyDataSetChanged()
+        })
 
         recyclerOrder.adapter = adapterOrder
         recyclerOrder.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)

@@ -1,5 +1,6 @@
 package br.com.arquitetoandroid.appcommerce.database
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import br.com.arquitetoandroid.appcommerce.model.Order
 import br.com.arquitetoandroid.appcommerce.model.OrderWithOrderedProducts
@@ -12,7 +13,7 @@ interface OrderDao {
     fun loadOrderAndProductsById(orderId: String) : List<OrderWithOrderedProducts>
 
     @Query("SELECT * FROM orders WHERE userId = :userId")
-    fun loadOrderByUser(userId: String) : List<Order>
+    fun loadAllOrdersByUser(userId: String) : LiveData<List<Order>>
 
     @Transaction
     @Query("SELECT * FROM orders WHERE userId = :userId")
