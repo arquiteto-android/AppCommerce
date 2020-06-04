@@ -7,15 +7,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.arquitetoandroid.appcommerce.adapter.ProductCategoryAdapter
 import br.com.arquitetoandroid.appcommerce.model.ProductCategory
-import br.com.arquitetoandroid.appcommerce.repository.ProductsRepository
+import br.com.arquitetoandroid.appcommerce.viewmodel.ProductViewModel
 
 class ProductCategoryFragment : Fragment() {
 
     lateinit var recyclerCategory: RecyclerView
+
+    private val producViewModel by viewModels<ProductViewModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -23,9 +27,12 @@ class ProductCategoryFragment : Fragment() {
 
         recyclerCategory = view.findViewById(R.id.rv_product_category)
 
-        val productsRepository = ProductsRepository(activity!!.application)
+        val adapterCategory = ProductCategoryAdapter(requireContext())
 
-        val adapterCategory = ProductCategoryAdapter(productsRepository.allCategories, requireContext())
+        producViewModel.allCategories.observe(this, Observer {
+            adapterCategory.list = it
+            adapterCategory.notifyDataSetChanged()
+        })
 
         recyclerCategory.adapter = adapterCategory
         recyclerCategory.layoutManager = GridLayoutManager(requireContext(), 2)

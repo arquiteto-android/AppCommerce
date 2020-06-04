@@ -5,14 +5,17 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.ContextThemeWrapper
 import android.widget.TextView
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
 import br.com.arquitetoandroid.appcommerce.model.Product
 import br.com.arquitetoandroid.appcommerce.model.ProductColor
 import br.com.arquitetoandroid.appcommerce.model.ProductSize
 import br.com.arquitetoandroid.appcommerce.model.ProductVariants
 import br.com.arquitetoandroid.appcommerce.repository.ProductsRepository
+import br.com.arquitetoandroid.appcommerce.viewmodel.ProductViewModel
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 
@@ -28,16 +31,13 @@ class ProductDetailActivity : AppCompatActivity() {
     lateinit var product: Product
     lateinit var productVariants: ProductVariants
 
+    private val productViewModel by viewModels<ProductViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_detail_const)
 
-        val productsRepository = ProductsRepository(application)
-
         product = intent.getSerializableExtra("PRODUCT") as Product
-
-        productVariants = productsRepository.loadProductById(product.id)
-        product = productVariants.product
 
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -45,20 +45,25 @@ class ProductDetailActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
-        textTitle = findViewById(R.id.toolbar_title)
-        textTitle.text = product.title
+        productViewModel.getProductWithVariants(product.id).observe(this, Observer {
+            productVariants = it
+            product = productVariants.product
 
-        productPrice = findViewById(R.id.tv_product_price)
-        productPrice.text = "R$ ${product.price}"
+            textTitle = findViewById(R.id.toolbar_title)
+            textTitle.text = product.title
 
-        productDesc = findViewById(R.id.tv_product_desc)
-        productDesc.text = product.description
+            productPrice = findViewById(R.id.tv_product_price)
+            productPrice.text = "R$ ${product.price}"
 
-        chipGroupColor = findViewById(R.id.chip_group_color)
-        fillChipColor()
+            productDesc = findViewById(R.id.tv_product_desc)
+            productDesc.text = product.description
 
-        chipGroupSize = findViewById(R.id.chip_group_size)
-        fillChipSize()
+            chipGroupColor = findViewById(R.id.chip_group_color)
+            fillChipColor()
+
+            chipGroupSize = findViewById(R.id.chip_group_size)
+            fillChipSize()
+        })
     }
 
     fun fillChipColor() {

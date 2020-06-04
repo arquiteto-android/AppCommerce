@@ -17,7 +17,7 @@ class ProductsRepository (application: Application) {
 
     val featuredProducts = productDao.loadAllFeatured()
 
-    fun loadProductsByCategory(categoryId: String) : List<Product> = productDao.loadAllByCategory(categoryId)
+    fun loadProductsByCategory(categoryId: String) = productDao.loadAllByCategory(categoryId)
 
-    fun loadProductById(productId: String) : ProductVariants = productDao.loadProductWithVariants(productId)
+    fun loadProductById(productId: String) = productDao.loadProductWithVariants(productId)
 }

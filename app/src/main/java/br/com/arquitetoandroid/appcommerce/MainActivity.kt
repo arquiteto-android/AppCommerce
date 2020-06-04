@@ -10,11 +10,13 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.arquitetoandroid.appcommerce.adapter.ProductAdapter
@@ -24,6 +26,7 @@ import br.com.arquitetoandroid.appcommerce.model.ProductCategory
 import br.com.arquitetoandroid.appcommerce.model.ProductColor
 import br.com.arquitetoandroid.appcommerce.model.ProductSize
 import br.com.arquitetoandroid.appcommerce.repository.ProductsRepository
+import br.com.arquitetoandroid.appcommerce.viewmodel.ProductViewModel
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity(),
@@ -38,13 +41,12 @@ class MainActivity : AppCompatActivity(),
     lateinit var recyclerCategory: RecyclerView
     lateinit var recyclerProduct: RecyclerView
     lateinit var imageProfile: ImageView
-    lateinit var productsRepository: ProductsRepository
+
+    private val productViewModel by viewModels<ProductViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        productsRepository = ProductsRepository(application)
 
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -74,14 +76,24 @@ class MainActivity : AppCompatActivity(),
 
         recyclerCategory = findViewById(R.id.rv_main_product_category)
 
-        val adapterCategory = ProductCategoryAdapter(productsRepository.featuredCategories, this)
+        val adapterCategory = ProductCategoryAdapter( this)
+
+        productViewModel.featuredCategories.observe(this, Observer {
+            adapterCategory.list = it
+            adapterCategory.notifyDataSetChanged()
+        })
 
         recyclerCategory.adapter = adapterCategory
         recyclerCategory.layoutManager = LinearLayoutManager(this,  LinearLayoutManager.HORIZONTAL, false)
 
         recyclerProduct = findViewById(R.id.rv_main_product)
 
-        val adapterProduct = ProductAdapter(productsRepository.featuredProducts, this)
+        val adapterProduct = ProductAdapter(this)
+
+        productViewModel.featuredProducts.observe(this, Observer {
+            adapterProduct.list = it
+            adapterProduct.notifyDataSetChanged()
+        })
 
         recyclerProduct.adapter = adapterProduct
         recyclerProduct.layoutManager = LinearLayoutManager(this,  LinearLayoutManager.HORIZONTAL, false)
