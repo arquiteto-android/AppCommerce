@@ -27,6 +27,7 @@ import br.com.arquitetoandroid.appcommerce.model.ProductColor
 import br.com.arquitetoandroid.appcommerce.model.ProductSize
 import br.com.arquitetoandroid.appcommerce.repository.ProductsRepository
 import br.com.arquitetoandroid.appcommerce.viewmodel.ProductViewModel
+import br.com.arquitetoandroid.appcommerce.viewmodel.UserViewModel
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity(),
@@ -43,6 +44,7 @@ class MainActivity : AppCompatActivity(),
     lateinit var imageProfile: ImageView
 
     private val productViewModel by viewModels<ProductViewModel>()
+    private val userViewModel by viewModels<UserViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -134,7 +136,11 @@ class MainActivity : AppCompatActivity(),
                 val intent = Intent(this, CartActivity::class.java)
                 startActivity(intent)
             }
-            R.id.nav_logout -> Toast.makeText(this, "Sair", Toast.LENGTH_LONG).show()
+            R.id.nav_logout -> {
+                userViewModel.logout()
+                finish()
+                startActivity(intent)
+            }
         }
 
         drawerLayout.closeDrawer(GravityCompat.START)
@@ -158,5 +164,11 @@ class MainActivity : AppCompatActivity(),
         } else {
             imageProfile.setImageResource(R.drawable.profile_image)
         }
+
+        userViewModel.isLogged().observe(this, Observer {
+            it?.let {
+                textLogin.text = "${it.user.name} ${it.user.surname}"
+            }
+        })
     }
 }

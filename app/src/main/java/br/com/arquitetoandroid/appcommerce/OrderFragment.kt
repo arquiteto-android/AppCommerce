@@ -1,5 +1,6 @@
 package br.com.arquitetoandroid.appcommerce
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,12 +12,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.arquitetoandroid.appcommerce.adapter.OrderAdapter
 import br.com.arquitetoandroid.appcommerce.viewmodel.OrderViewModel
+import br.com.arquitetoandroid.appcommerce.viewmodel.UserViewModel
 
 class OrderFragment : Fragment() {
 
     lateinit var recyclerOrder: RecyclerView
 
     private val orderViewModel by viewModels<OrderViewModel>()
+    private val userViewModel by viewModels<UserViewModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -26,9 +29,16 @@ class OrderFragment : Fragment() {
 
         val adapterOrder = OrderAdapter(requireContext())
 
-        orderViewModel.getOrdersByUser("").observe(this, Observer {
-            adapterOrder.list = it
-            adapterOrder.notifyDataSetChanged()
+        userViewModel.isLogged().observe(this, Observer {
+            if (it != null)
+                orderViewModel.getOrdersByUser(it.user.id).observe(this, Observer { orders ->
+                    adapterOrder.list = orders
+                    adapterOrder.notifyDataSetChanged()
+                })
+            else {
+                activity?.finish()
+                startActivity(Intent(activity, UserLoginActivity::class.java))
+            }
         })
 
         recyclerOrder.adapter = adapterOrder

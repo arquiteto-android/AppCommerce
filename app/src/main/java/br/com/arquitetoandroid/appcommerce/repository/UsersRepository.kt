@@ -5,7 +5,7 @@ import br.com.arquitetoandroid.appcommerce.database.AppDatabase
 import br.com.arquitetoandroid.appcommerce.model.User
 import br.com.arquitetoandroid.appcommerce.model.UserAddress
 
-class UsersRespository (application: Application) {
+class UsersRepository (application: Application) {
 
     private val userDao = AppDatabase.getDatabase(application).userDao()
 

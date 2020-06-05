@@ -10,7 +10,7 @@ import br.com.arquitetoandroid.appcommerce.model.UserWithAddresses
 interface UserDao {
 
     @Query("SELECT * FROM users WHERE email = :email AND password = :password")
-    fun login(email: String, password: String) : LiveData<User>
+    fun login(email: String, password: String) : User
 
     @Transaction
     @Query("SELECT * FROM users WHERE id = :userId")
