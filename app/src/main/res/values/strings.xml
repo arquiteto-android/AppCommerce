@@ -86,4 +86,5 @@
 	<string name="cart_label_total">Total:</string>
     <string name="order_title">Minhas Compras</string>
     <string name="login_message">Email e/ou senha inválidos.</string>
+    <string name="user_profile_msg_success">Dados atualizados com sucesso.</string>
 </resources>

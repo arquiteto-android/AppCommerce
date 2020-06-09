@@ -15,4 +15,4 @@ data class UserAddress (
     var state: String,
     var city: String,
     var zipCode: String,
-    var country: String) : Serializable
+    var country: String = "Brasil") : Serializable

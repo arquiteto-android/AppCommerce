@@ -7,13 +7,13 @@ import android.os.Bundle
 import android.os.Environment
 import android.preference.PreferenceManager
 import android.provider.MediaStore
-import android.widget.ImageView
-import android.widget.Spinner
-import android.widget.TextView
+import android.widget.*
 import androidx.activity.viewModels
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.FileProvider
 import androidx.lifecycle.Observer
+import br.com.arquitetoandroid.appcommerce.model.UserAddress
+import br.com.arquitetoandroid.appcommerce.model.UserWithAddresses
 import br.com.arquitetoandroid.appcommerce.viewmodel.UserViewModel
 import com.google.android.material.textfield.TextInputEditText
 import java.io.File
@@ -36,6 +36,9 @@ class UserProfileActivity : AppCompatActivity() {
     lateinit var userAddressCity: TextInputEditText
     lateinit var userAddressCep: TextInputEditText
     lateinit var userAddressState: Spinner
+    lateinit var btnUserUpdate: Button
+
+    lateinit var userWithAddress: UserWithAddresses
 
     private val userViewModel by viewModels<UserViewModel>()
 
@@ -64,6 +67,9 @@ class UserProfileActivity : AppCompatActivity() {
         userAddressCep = findViewById(R.id.txt_edit_cep)
         userAddressState = findViewById(R.id.sp_state)
 
+        btnUserUpdate = findViewById(R.id.btn_user_register)
+        btnUserUpdate.setOnClickListener { update() }
+
         imageProfile = findViewById(R.id.iv_profile_image)
         imageProfile.setOnClickListener{ takePicture() }
 
@@ -73,22 +79,26 @@ class UserProfileActivity : AppCompatActivity() {
             photoURI = Uri.parse(profileImage)
             imageProfile.setImageURI(photoURI)
         } else {
+            photoURI = Uri.parse("/")
             imageProfile.setImageResource(R.drawable.profile_image)
         }
 
         userViewModel.isLogged().observe(this, Observer {
             if (it != null) {
+                userWithAddress = it
                 userProfileName.setText(it.user.name)
                 userProfileSurname.setText(it.user.surname)
                 userProfileEmail.setText(it.user.email)
-                it.addresses.first().let { address ->
-                    userAddress1.setText(address.addressLine1)
-                    userAddress2.setText(address.addressLine2)
-                    userAddressNumber.setText(address.number)
-                    userAddressCity.setText(address.city)
-                    userAddressCep.setText(address.zipCode)
-                    resources.getStringArray(R.array.states).asList().indexOf(address.state).let {
-                        userAddressState.setSelection(it)
+                if(it.addresses.isNotEmpty()) {
+                    it.addresses.first().let { address ->
+                        userAddress1.setText(address.addressLine1)
+                        userAddress2.setText(address.addressLine2)
+                        userAddressNumber.setText(address.number)
+                        userAddressCity.setText(address.city)
+                        userAddressCep.setText(address.zipCode)
+                        resources.getStringArray(R.array.states).asList().indexOf(address.state).let {
+                            userAddressState.setSelection(it)
+                        }
                     }
                 }
             } else {
@@ -96,6 +106,110 @@ class UserProfileActivity : AppCompatActivity() {
                 finish()
             }
         })
+    }
+
+    fun update() {
+        if(!validate())
+            return
+
+        userWithAddress.apply {
+            user.name = userProfileName.text.toString()
+            user.surname = userProfileSurname.text.toString()
+            user.email = userProfileEmail.text.toString()
+            user.image = photoURI.toString()
+
+            userViewModel.updateUser(user)
+
+            if(addresses.isEmpty()) {
+                val userAddress = UserAddress(
+                    addressLine1 = userAddress1.text.toString(),
+                    addressLine2 = userAddress2.text.toString(),
+                    number = userAddressNumber.text.toString(),
+                    city = userAddressCity.text.toString(),
+                    zipCode = userAddressCep.text.toString(),
+                    state = resources.getStringArray(R.array.states)[userAddressState.selectedItemPosition],
+                    userId = user.id)
+
+                userViewModel.createAddress(userAddress)
+            } else {
+                addresses.first().apply {
+                    addressLine1 = userAddress1.text.toString()
+                    addressLine2 = userAddress2.text.toString()
+                    number = userAddressNumber.text.toString()
+                    city = userAddressCity.text.toString()
+                    zipCode = userAddressCep.text.toString()
+                    state = resources.getStringArray(R.array.states)[userAddressState.selectedItemPosition]
+                }
+
+                userViewModel.updateAddress(addresses.first())
+            }
+        }
+
+        Toast.makeText(this, getString(R.string.user_profile_msg_success), Toast.LENGTH_SHORT).show()
+    }
+
+    private fun validate() : Boolean {
+        var isValid = true
+
+        userProfileName.apply {
+            if(text.isNullOrEmpty()) {
+                error = "Preencha o campo nome."
+                isValid = false
+            } else {
+                error = null
+            }
+        }
+        userProfileSurname.apply {
+            if(text.isNullOrEmpty()) {
+                error = "Preencha o campo sobrenome."
+                isValid = false
+            } else {
+                error = null
+            }
+        }
+        userProfileEmail.apply {
+            if(text.isNullOrEmpty()) {
+                error = "Preencha o campo email."
+                isValid = false
+            } else {
+                error = null
+            }
+        }
+        userAddress1.apply {
+            if(text.isNullOrEmpty()) {
+                error = "Preencha o campo rua/avenida."
+                isValid = false
+            } else {
+                error = null
+            }
+        }
+        userAddressNumber.apply {
+            if(text.isNullOrEmpty()) {
+                error = "Preencha o campo número."
+                isValid = false
+            } else {
+                error = null
+            }
+        }
+        userAddressCity.apply {
+            if(text.isNullOrEmpty()) {
+                error = "Preencha o campo cidade."
+                isValid = false
+            } else {
+                error = null
+            }
+        }
+        userAddressCep.apply {
+            if(text.isNullOrEmpty()) {
+                error = "Preencha o campo cep."
+                isValid = false
+            } else {
+                error = null
+            }
+        }
+
+
+        return isValid
     }
 
     override fun onSupportNavigateUp(): Boolean {
