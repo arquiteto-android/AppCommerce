@@ -87,4 +87,5 @@
     <string name="order_title">Minhas Compras</string>
     <string name="login_message">Email e/ou senha inválidos.</string>
     <string name="user_profile_msg_success">Dados atualizados com sucesso.</string>
+    <string name="product_detail_cart_msg">Selecione uma cor e um tamanho.</string>
 </resources>

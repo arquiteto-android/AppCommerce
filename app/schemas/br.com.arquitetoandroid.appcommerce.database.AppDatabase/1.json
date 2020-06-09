@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "b43ce80f08d622f7b17de4117feb969c",
+    "identityHash": "b416711d4c59edb627987bbba3e895a0",
     "entities": [
       {
         "tableName": "orders",
@@ -56,7 +56,7 @@
       },
       {
         "tableName": "ordered_products",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`orderedProductId` TEXT NOT NULL, `orderId` TEXT NOT NULL, `quantity` INTEGER NOT NULL, `id` TEXT NOT NULL, `title` TEXT NOT NULL, `categoryId` TEXT NOT NULL, `description` TEXT NOT NULL, `price` REAL NOT NULL, `thumbnail` TEXT NOT NULL, `featured` INTEGER NOT NULL, PRIMARY KEY(`orderedProductId`, `orderId`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`orderedProductId` TEXT NOT NULL, `orderId` TEXT NOT NULL, `size` TEXT NOT NULL, `color` TEXT NOT NULL, `quantity` INTEGER NOT NULL, `id` TEXT NOT NULL, `title` TEXT NOT NULL, `categoryId` TEXT NOT NULL, `description` TEXT NOT NULL, `price` REAL NOT NULL, `thumbnail` TEXT NOT NULL, `featured` INTEGER NOT NULL, PRIMARY KEY(`orderedProductId`, `orderId`))",
         "fields": [
           {
             "fieldPath": "orderedProductId",
@@ -67,6 +67,18 @@
           {
             "fieldPath": "orderId",
             "columnName": "orderId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "size",
+            "columnName": "size",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "color",
+            "columnName": "color",
             "affinity": "TEXT",
             "notNull": true
           },
@@ -441,7 +453,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'b43ce80f08d622f7b17de4117feb969c')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'b416711d4c59edb627987bbba3e895a0')"
     ]
   }
 }

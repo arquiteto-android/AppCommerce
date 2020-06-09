@@ -10,4 +10,6 @@ data class OrderedProduct (
     val orderedProductId: String = UUID.randomUUID().toString(),
     var orderId: String,
     @Embedded val product: Product,
-    var quantity: Int) : Serializable
+    var size: String = "",
+    var color: String = "",
+    var quantity: Int = 0) : Serializable

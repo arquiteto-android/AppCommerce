@@ -12,17 +12,19 @@ data class Order (
     var status: Status,
     var method: Method,
     var userId: String,
-    var price: Double) : Serializable {
+    var price: Double = 0.0) : Serializable {
 
     enum class Status(val message: String) {
         PENDENT("Pendente"),
         PAID("Pago"),
-        PROCESSED("Enviado")
+        PROCESSED("Enviado"),
+        CART("Carrinho Abandonado")
     }
 
     enum class Method(val message: String) {
         CREDIT_CARD("Cartão de Crédito"),
-        BOLETO("Boleto")
+        BOLETO("Boleto"),
+        NONE("Nenhum")
     }
 
 }

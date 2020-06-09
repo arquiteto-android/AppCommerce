@@ -9,11 +9,15 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import br.com.arquitetoandroid.appcommerce.CartFragment
 import br.com.arquitetoandroid.appcommerce.ProductDetailActivity
 import br.com.arquitetoandroid.appcommerce.R
 import br.com.arquitetoandroid.appcommerce.model.OrderedProduct
+import br.com.arquitetoandroid.appcommerce.viewmodel.CartViewModel
 
-class CartAdapter (val list: List<OrderedProduct>, val context: Context) : RecyclerView.Adapter<CartAdapter.ViewHolder>() {
+class CartAdapter (val context: Context) : RecyclerView.Adapter<CartAdapter.ViewHolder>() {
+
+    var list: MutableList<OrderedProduct> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_cart, parent, false)
@@ -27,26 +31,35 @@ class CartAdapter (val list: List<OrderedProduct>, val context: Context) : Recyc
         val orderedProduct = list[position]
         holder.title.text = orderedProduct.product.title
         holder.image.setImageResource(R.drawable.camiseta_mockup)
-//        holder.color.text = orderedProduct.product.colors[0].name
-//        holder.size.text = orderedProduct.product.sizes[0].size
+        holder.color.text = orderedProduct.color
+        holder.size.text = orderedProduct.size
         holder.quantity.text = orderedProduct.quantity.toString()
 
         holder.qtdUp.setOnClickListener {
             orderedProduct.quantity+=1
+            CartViewModel.updateQuantity(orderedProduct.product, orderedProduct.quantity)
             holder.quantity.text = orderedProduct.quantity.toString()
             updatePrice(holder, orderedProduct)
+            (context as CartFragment.Callback).updateCart()
         }
         holder.qtdDown.setOnClickListener {
             orderedProduct.quantity-=1
-            holder.quantity.text = orderedProduct.quantity.toString()
-            updatePrice(holder, orderedProduct)
+            CartViewModel.updateQuantity(orderedProduct.product, orderedProduct.quantity)
+
+            if (orderedProduct.quantity > 0) {
+                holder.quantity.text = orderedProduct.quantity.toString()
+                updatePrice(holder, orderedProduct)
+            }
+
+            (context as CartFragment.Callback).updateCart()
+            notifyDataSetChanged()
         }
 
         updatePrice(holder, orderedProduct)
     }
 
     private fun updatePrice(holder: ViewHolder, orderedProduct: OrderedProduct) {
-        holder.price.text = "R$ ${orderedProduct.product.price*orderedProduct.quantity}"
+        holder.price.text = "R$ ${orderedProduct.product.price * orderedProduct.quantity}"
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
