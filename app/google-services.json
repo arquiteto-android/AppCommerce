@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "682189337156",
+    "firebase_url": "https://appcommerce-pro.firebaseio.com",
+    "project_id": "appcommerce-pro",
+    "storage_bucket": "appcommerce-pro.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:682189337156:android:04954f937008a0e2000211",
+        "android_client_info": {
+          "package_name": "br.com.arquitetoandroid.appcommerce"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "682189337156-jb4b44om45d46e70ggup8kt77621dnvq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGDaGeX0upFAiTE9Vmr9uq0TY2IBhCZow"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "682189337156-jb4b44om45d46e70ggup8kt77621dnvq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
