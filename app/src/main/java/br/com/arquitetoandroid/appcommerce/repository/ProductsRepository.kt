@@ -11,10 +11,6 @@ import com.google.firebase.firestore.Source
 
 class ProductsRepository (application: Application) {
 
-    private val productDao = AppDatabase.getDatabase(application).productDao()
-
-    private val productCategoryDao = AppDatabase.getDatabase(application).productCategoryDao()
-
     private val firestore = FirebaseFirestore.getInstance()
 
     fun allCategories() : LiveData<List<ProductCategory>> {

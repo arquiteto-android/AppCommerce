@@ -11,15 +11,23 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.arquitetoandroid.appcommerce.adapter.OrderAdapter
+import br.com.arquitetoandroid.appcommerce.model.User
 import br.com.arquitetoandroid.appcommerce.viewmodel.OrderViewModel
 import br.com.arquitetoandroid.appcommerce.viewmodel.UserViewModel
 
 class OrderFragment : Fragment() {
 
     lateinit var recyclerOrder: RecyclerView
+    lateinit var user: User
 
     private val orderViewModel by viewModels<OrderViewModel>()
-    private val userViewModel by viewModels<UserViewModel>()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        if (arguments != null)
+            user = (arguments?.getSerializable("USER") as User)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -29,16 +37,9 @@ class OrderFragment : Fragment() {
 
         val adapterOrder = OrderAdapter(requireContext())
 
-        userViewModel.isLogged().observe(this, Observer {
-            if (it != null)
-                orderViewModel.getOrdersByUser(it.user.id).observe(this, Observer { orders ->
-                    adapterOrder.list = orders
-                    adapterOrder.notifyDataSetChanged()
-                })
-            else {
-                activity?.finish()
-                startActivity(Intent(activity, UserLoginActivity::class.java))
-            }
+        orderViewModel.getOrdersByUser(user.id).observe(viewLifecycleOwner, Observer { orders ->
+            adapterOrder.list = orders
+            adapterOrder.notifyDataSetChanged()
         })
 
         recyclerOrder.adapter = adapterOrder

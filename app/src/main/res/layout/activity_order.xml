@@ -18,9 +18,8 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <fragment
+    <FrameLayout
         android:id="@+id/fragment_order"
-        android:name="br.com.arquitetoandroid.appcommerce.OrderFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout="@layout/fragment_order"/>
