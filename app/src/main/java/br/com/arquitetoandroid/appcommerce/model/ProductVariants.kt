@@ -1,22 +1,28 @@
 package br.com.arquitetoandroid.appcommerce.model
 
 import androidx.room.Embedded
+import androidx.room.Ignore
 import androidx.room.Relation
+import java.io.Serializable
 
 data class ProductVariants (
-    @Embedded val product: Product,
+    @Embedded var product: Product,
     @Relation(
         parentColumn = "id",
         entityColumn = "productId"
     )
-    val colors: List<ProductColor>,
+    var colors: List<ProductColor>,
     @Relation(
         parentColumn = "id",
         entityColumn = "productId"
     )
-    val sizes: List<ProductSize>,
+    var sizes: List<ProductSize>,
     @Relation(
         parentColumn = "id",
         entityColumn = "productId"
     )
-    val images: List<ProductImage>)
+    var images: List<ProductImage>) : Serializable {
+
+    @Ignore constructor(): this(Product(), mutableListOf(), mutableListOf(), mutableListOf())
+
+}

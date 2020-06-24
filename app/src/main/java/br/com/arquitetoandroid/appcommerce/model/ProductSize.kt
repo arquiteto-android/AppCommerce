@@ -16,4 +16,6 @@ data class ProductSize (
     constructor(id: String,
                 productId: String,
                 size: String) : this(id, productId, size, false)
+
+    @Ignore constructor(): this("", "", "", false)
 }

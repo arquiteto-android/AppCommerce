@@ -8,11 +8,11 @@ class ProductViewModel (application: Application) : AndroidViewModel(application
 
     private val productsRepository = ProductsRepository(getApplication())
 
-    val allCategories = productsRepository.allCategories
+    val allCategories = productsRepository.allCategories()
 
-    val featuredCategories = productsRepository.featuredCategories
+    val featuredCategories = productsRepository.featuredCategories()
 
-    val featuredProducts = productsRepository.featuredProducts
+    val featuredProducts = productsRepository.featuredProducts()
 
     fun getProductsByCategory(categoryId: String) = productsRepository.loadProductsByCategory(categoryId)
 

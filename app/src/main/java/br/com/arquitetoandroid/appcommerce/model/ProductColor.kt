@@ -18,4 +18,6 @@ data class ProductColor (
                 productId: String,
                 name: String,
                 code: String) : this(id, productId, name, code, false)
+
+    @Ignore constructor(): this("", "", "", "", false)
 }
