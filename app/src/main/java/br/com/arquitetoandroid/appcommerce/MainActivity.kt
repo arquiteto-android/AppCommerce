@@ -26,6 +26,7 @@ import br.com.arquitetoandroid.appcommerce.model.ProductCategory
 import br.com.arquitetoandroid.appcommerce.model.ProductColor
 import br.com.arquitetoandroid.appcommerce.model.ProductSize
 import br.com.arquitetoandroid.appcommerce.repository.ProductsRepository
+import br.com.arquitetoandroid.appcommerce.viewmodel.HomeBannerViewModel
 import br.com.arquitetoandroid.appcommerce.viewmodel.ProductViewModel
 import br.com.arquitetoandroid.appcommerce.viewmodel.UserViewModel
 import com.google.android.material.navigation.NavigationView
@@ -42,9 +43,13 @@ class MainActivity : AppCompatActivity(),
     lateinit var recyclerCategory: RecyclerView
     lateinit var recyclerProduct: RecyclerView
     lateinit var imageProfile: ImageView
+    lateinit var bannerImage: ImageView
+    lateinit var bannerTitle: TextView
+    lateinit var bannerSubtitle: TextView
 
     private val productViewModel by viewModels<ProductViewModel>()
     private val userViewModel by viewModels<UserViewModel>()
+    private val homeBannerViewModel by viewModels<HomeBannerViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,6 +62,15 @@ class MainActivity : AppCompatActivity(),
 
         textTitle = findViewById(R.id.toolbar_title)
         textTitle.text = getString(R.string.app_name)
+
+        bannerImage = findViewById(R.id.iv_slider_img)
+        bannerTitle = findViewById(R.id.tv_slider_title)
+        bannerSubtitle = findViewById(R.id.tv_slider_subtitle)
+
+        homeBannerViewModel.load(bannerImage).observe(this, Observer {
+            bannerTitle.text = it.title
+            bannerSubtitle.text = it.subtitle
+        })
 
         drawerLayout = findViewById(R.id.nav_drawer_layout)
 

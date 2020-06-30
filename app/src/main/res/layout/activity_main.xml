@@ -49,12 +49,13 @@
 
 					<LinearLayout
 							android:layout_width="match_parent"
-							android:layout_height="match_parent"
+							android:layout_height="wrap_content"
 							android:orientation="vertical"
 							android:background="#77000000"
 							android:layout_alignBottom="@id/iv_slider_img"
 							android:layout_centerInParent="true"
-							android:gravity="center">
+							android:gravity="center"
+							android:padding="8dp">
 
 						<TextView
 								android:id="@+id/tv_slider_title"
