@@ -1,7 +1,9 @@
 package br.com.arquitetoandroid.appcommerce.viewmodel
 
 import android.app.Application
+import android.net.Uri
 import android.preference.PreferenceManager
+import android.widget.ImageView
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -34,6 +36,10 @@ class UserViewModel (application: Application) : AndroidViewModel(application) {
     }
 
     fun resetPassword(email: String) = usersRepository.resetPassword(email)
+
+    fun uploadProfileImage(userId: String, photoUri: Uri) = usersRepository.uploadProfileImage(userId, photoUri)
+
+    fun loadProfile(userId: String, imageView: ImageView) = usersRepository.loadProfile(userId, imageView)
 
     companion object {
         const val USER_ID = "USER_ID"

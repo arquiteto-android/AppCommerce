@@ -1,10 +1,14 @@
 package br.com.arquitetoandroid.appcommerce.repository
 
 import android.app.Application
+import android.net.Uri
 import android.preference.PreferenceManager
+import android.provider.MediaStore
 import android.util.Log
+import android.widget.ImageView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import br.com.arquitetoandroid.appcommerce.R
 import br.com.arquitetoandroid.appcommerce.database.AppDatabase
 import br.com.arquitetoandroid.appcommerce.model.User
 import br.com.arquitetoandroid.appcommerce.model.UserAddress
@@ -14,7 +18,12 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.ktx.app
+import com.google.firebase.storage.ktx.storage
 import org.json.JSONObject
 
 class UsersRepository (application: Application) {
@@ -24,6 +33,10 @@ class UsersRepository (application: Application) {
     private val queue = Volley.newRequestQueue(application)
 
     private val preference = PreferenceManager.getDefaultSharedPreferences(application)
+
+    private val glide = Glide.with(application)
+
+    private val storage = Firebase.storage(Firebase.app)
 
     fun login(email: String, password: String) : LiveData<User> {
 
@@ -165,6 +178,27 @@ class UsersRepository (application: Application) {
         queue.add(request)
 
     }
+
+    fun uploadProfileImage(userId: String, photoUri:Uri) : LiveData<String> {
+
+        val liveData = MutableLiveData<String>()
+
+        storage.reference.child("users/$userId/profile.jpg").putFile(photoUri).addOnSuccessListener {
+            preference.edit().putString(MediaStore.EXTRA_OUTPUT, it.metadata?.path).apply()
+            liveData.value = it.metadata?.path
+        }
+
+        return liveData
+    }
+
+    fun loadProfile(userId: String, imageView: ImageView) = storage.reference.child("users/$userId/profile.jpg")
+        .downloadUrl.addOnSuccessListener {
+            glide.load(it)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .error(R.drawable.profile_image)
+                .placeholder(R.drawable.profile_image)
+                .into(imageView)
+        }
 
     companion object {
 

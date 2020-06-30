@@ -1,17 +1,28 @@
 package br.com.arquitetoandroid.appcommerce.repository
 
 import android.app.Application
+import android.widget.ImageView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import br.com.arquitetoandroid.appcommerce.R
 import br.com.arquitetoandroid.appcommerce.database.AppDatabase
 import br.com.arquitetoandroid.appcommerce.model.*
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Source
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.ktx.app
+import com.google.firebase.storage.ktx.storage
 
 class ProductsRepository (application: Application) {
 
     private val firestore = FirebaseFirestore.getInstance()
+
+    private val storage = Firebase.storage(Firebase.app)
+
+    private val glide = Glide.with(application)
 
     fun allCategories() : LiveData<List<ProductCategory>> {
 
@@ -145,5 +156,27 @@ class ProductsRepository (application: Application) {
         }
 
         return liveData
+    }
+
+    fun loadThumbnail(product: Product, imageView: ImageView) {
+        storage.reference.child("products/${product.id}/${product.thumbnail}")
+            .downloadUrl.addOnSuccessListener {
+            glide.load(it)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .error(R.drawable.placeholder)
+                .placeholder(R.drawable.placeholder)
+                .into(imageView)
+        }
+    }
+
+    fun loadImages(product: Product, path: String, imageView: ImageView) {
+        storage.reference.child("products/${product.id}/$path")
+            .downloadUrl.addOnSuccessListener {
+                glide.load(it)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .error(R.drawable.placeholder)
+                    .placeholder(R.drawable.placeholder)
+                    .into(imageView)
+            }
     }
 }

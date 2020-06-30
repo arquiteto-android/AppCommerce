@@ -26,7 +26,6 @@ class UserProfileActivity : AppCompatActivity() {
     lateinit var toolbar: Toolbar
     lateinit var textTitle: TextView
     lateinit var imageProfile: ImageView
-    lateinit var photoURI: Uri
     lateinit var userProfileName: TextInputEditText
     lateinit var userProfileSurname: TextInputEditText
     lateinit var userProfileEmail: TextInputEditText
@@ -37,6 +36,8 @@ class UserProfileActivity : AppCompatActivity() {
     lateinit var userAddressCep: TextInputEditText
     lateinit var userAddressState: Spinner
     lateinit var btnUserUpdate: Button
+
+    var photoURI: Uri = Uri.EMPTY
 
     lateinit var userWithAddress: UserWithAddresses
 
@@ -73,16 +74,6 @@ class UserProfileActivity : AppCompatActivity() {
         imageProfile = findViewById(R.id.iv_profile_image)
         imageProfile.setOnClickListener{ takePicture() }
 
-        val profileImage = PreferenceManager.getDefaultSharedPreferences(this).getString(MediaStore.EXTRA_OUTPUT, null)
-
-        if (profileImage != null) {
-            photoURI = Uri.parse(profileImage)
-            imageProfile.setImageURI(photoURI)
-        } else {
-            photoURI = Uri.parse("/")
-            imageProfile.setImageResource(R.drawable.profile_image)
-        }
-
         userViewModel.isLogged().observe(this, Observer {
             if (it != null) {
                 userWithAddress = it
@@ -101,6 +92,8 @@ class UserProfileActivity : AppCompatActivity() {
                         }
                     }
                 }
+
+                userViewModel.loadProfile(userWithAddress.user.id, imageProfile)
             } else {
                 startActivity(Intent(this, UserLoginActivity::class.java))
                 finish()
@@ -247,10 +240,9 @@ class UserProfileActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        PreferenceManager.getDefaultSharedPreferences(this).apply {
-            edit().putString(MediaStore.EXTRA_OUTPUT, photoURI.toString()).apply()
-        }
-
-        imageProfile.setImageURI(photoURI)
+        userViewModel.uploadProfileImage(userWithAddress.user.id, photoURI).observe(this, Observer {
+            userViewModel.loadProfile(userWithAddress.user.id, imageProfile)
+            photoURI = Uri.parse(it)
+        })
     }
 }

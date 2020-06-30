@@ -5,13 +5,13 @@
         android:id="@+id/cv_product_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-		app:cardElevation="8dp"
+		app:cardElevation="4dp"
 		android:padding="8dp"
 		android:layout_margin="8dp">
 
 	<LinearLayout
 			android:id="@+id/ll_product_item"
-			android:layout_width="wrap_content"
+			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:orientation="vertical"
 			android:layout_margin="8dp"
@@ -19,9 +19,9 @@
 
 		<ImageView
 				android:id="@+id/iv_product_image"
-				android:layout_width="wrap_content"
+				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:src="@drawable/camiseta_mockup"/>
+				android:src="@drawable/placeholder"/>
 
 		<TextView
 				android:id="@+id/tv_product_title"

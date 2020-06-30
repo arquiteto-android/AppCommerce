@@ -27,15 +27,25 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <ImageView
-            android:id="@+id/iv_product_image"
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vp_images"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/app_bar_layout"
-            app:srcCompat="@drawable/camiseta_mockup" />
+            app:layout_constraintTop_toBottomOf="@+id/app_bar_layout" />
+
+        <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/vp_images"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:tabGravity="center"
+                app:tabIndicatorHeight="0dp"
+                app:tabBackground="@drawable/tab_selector"/>
 
         <TextView
             android:id="@+id/tv_product_price"
@@ -50,7 +60,7 @@
             android:textAppearance="@android:style/TextAppearance.Medium"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_product_image" />
+            app:layout_constraintTop_toBottomOf="@+id/vp_images" />
 
         <TextView
             android:id="@+id/tv_color_label"

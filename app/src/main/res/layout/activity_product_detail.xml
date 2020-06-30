@@ -31,7 +31,7 @@
 			<ImageView
 					android:layout_width="match_parent"
 					android:layout_height="320dp"
-					android:src="@drawable/camiseta_mockup"
+					android:src="@drawable/placeholder"
 					android:scaleType="centerCrop"
 					android:adjustViewBounds="true"/>
 

@@ -1,5 +1,6 @@
 package br.com.arquitetoandroid.appcommerce.adapter
 
+import android.app.Application
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
@@ -13,9 +14,12 @@ import br.com.arquitetoandroid.appcommerce.CartFragment
 import br.com.arquitetoandroid.appcommerce.ProductDetailActivity
 import br.com.arquitetoandroid.appcommerce.R
 import br.com.arquitetoandroid.appcommerce.model.OrderedProduct
+import br.com.arquitetoandroid.appcommerce.repository.ProductsRepository
 import br.com.arquitetoandroid.appcommerce.viewmodel.CartViewModel
 
 class CartAdapter (val context: Context) : RecyclerView.Adapter<CartAdapter.ViewHolder>() {
+
+    private val productsRepository = ProductsRepository(context.applicationContext as Application)
 
     var list: MutableList<OrderedProduct> = mutableListOf()
 
@@ -30,7 +34,6 @@ class CartAdapter (val context: Context) : RecyclerView.Adapter<CartAdapter.View
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val orderedProduct = list[position]
         holder.title.text = orderedProduct.product.title
-        holder.image.setImageResource(R.drawable.camiseta_mockup)
         holder.color.text = orderedProduct.color
         holder.size.text = orderedProduct.size
         holder.quantity.text = orderedProduct.quantity.toString()
@@ -54,6 +57,8 @@ class CartAdapter (val context: Context) : RecyclerView.Adapter<CartAdapter.View
             (context as CartFragment.Callback).updateCart()
             notifyDataSetChanged()
         }
+
+        productsRepository.loadThumbnail(orderedProduct.product, holder.image)
 
         updatePrice(holder, orderedProduct)
     }

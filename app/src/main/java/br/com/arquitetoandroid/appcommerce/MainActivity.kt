@@ -157,17 +157,10 @@ class MainActivity : AppCompatActivity(),
     override fun onResume() {
         super.onResume()
 
-        val profileImage = PreferenceManager.getDefaultSharedPreferences(this).getString(MediaStore.EXTRA_OUTPUT, null)
-
-        if (profileImage != null) {
-            imageProfile.setImageURI(Uri.parse(profileImage))
-        } else {
-            imageProfile.setImageResource(R.drawable.profile_image)
-        }
-
-        userViewModel.isLogged().observe(this, Observer {
-            it?.let {
+        userViewModel.isLogged().observe(this, Observer { user ->
+            user?.let {
                 textLogin.text = "${it.user.name} ${it.user.surname}"
+                userViewModel.loadProfile(it.user.id, imageProfile)
             }
         })
     }

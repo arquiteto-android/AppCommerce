@@ -14,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
+import androidx.viewpager2.widget.ViewPager2
+import br.com.arquitetoandroid.appcommerce.adapter.ImageSliderAdapter
 import br.com.arquitetoandroid.appcommerce.model.Product
 import br.com.arquitetoandroid.appcommerce.model.ProductColor
 import br.com.arquitetoandroid.appcommerce.model.ProductSize
@@ -23,6 +25,8 @@ import br.com.arquitetoandroid.appcommerce.viewmodel.CartViewModel
 import br.com.arquitetoandroid.appcommerce.viewmodel.ProductViewModel
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 
 class ProductDetailActivity : AppCompatActivity() {
 
@@ -33,6 +37,8 @@ class ProductDetailActivity : AppCompatActivity() {
     lateinit var chipGroupColor: ChipGroup
     lateinit var chipGroupSize: ChipGroup
     lateinit var btnBuy: Button
+    lateinit var viewPagerImages: ViewPager2
+    lateinit var tabLayout: TabLayout
 
     lateinit var product: Product
     lateinit var productVariants: ProductVariants
@@ -51,9 +57,20 @@ class ProductDetailActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
+        val imageSliderAdapter = ImageSliderAdapter(this)
+
         productViewModel.getProductWithVariants(product.id).observe(this, Observer {
             productVariants = it
             product = productVariants.product
+
+            viewPagerImages = findViewById(R.id.vp_images)
+            tabLayout = findViewById(R.id.tab_layout)
+
+            imageSliderAdapter.product = productVariants
+            viewPagerImages.adapter = imageSliderAdapter
+            imageSliderAdapter.notifyDataSetChanged()
+
+            TabLayoutMediator(tabLayout, viewPagerImages) { tab, position ->  }.attach()
 
             textTitle = findViewById(R.id.toolbar_title)
             textTitle.text = product.title
