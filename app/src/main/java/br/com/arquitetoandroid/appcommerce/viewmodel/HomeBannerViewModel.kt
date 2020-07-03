@@ -23,7 +23,7 @@ class HomeBannerViewModel (application: Application) : AndroidViewModel(applicat
     private val remoteConfig = Firebase.remoteConfig
 
     private val configSettings = remoteConfigSettings {
-        minimumFetchIntervalInSeconds = 60
+        minimumFetchIntervalInSeconds = 3600
     }
 
     init {

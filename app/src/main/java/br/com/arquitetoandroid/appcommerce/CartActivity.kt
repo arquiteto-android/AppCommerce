@@ -1,9 +1,12 @@
 package br.com.arquitetoandroid.appcommerce
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -12,6 +15,9 @@ import br.com.arquitetoandroid.appcommerce.model.Order
 import br.com.arquitetoandroid.appcommerce.viewmodel.CartViewModel
 import br.com.arquitetoandroid.appcommerce.viewmodel.OrderViewModel
 import br.com.arquitetoandroid.appcommerce.viewmodel.UserViewModel
+import com.mercadopago.android.px.core.MercadoPagoCheckout
+import com.mercadopago.android.px.model.Payment
+import com.mercadopago.android.px.model.exceptions.MercadoPagoError
 
 class CartActivity : AppCompatActivity(), CartFragment.Callback {
 
@@ -47,9 +53,10 @@ class CartActivity : AppCompatActivity(), CartFragment.Callback {
                 if (it != null) {
                     val fullOrder = CartViewModel.getFullOrder()
                     fullOrder.order.userId = it.user.id
-                    orderViewModel.place(fullOrder)
-                    startActivity(Intent(this, OrderActivity::class.java))
-                    finish()
+                    orderViewModel.place(it, fullOrder).observe(this, Observer {id ->
+                        MercadoPagoCheckout.Builder("TEST-4b2a858c-a66b-444d-891a-46d94be39ef0", id).build()
+                            .startPayment(this, 1)
+                    })
                 } else {
                     startActivity(Intent(this, UserLoginActivity::class.java))
                     finish()
@@ -76,4 +83,26 @@ class CartActivity : AppCompatActivity(), CartFragment.Callback {
         cartViewModel.cartPrice.value = CartViewModel.getFullOrder().order.price
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == 1) {
+            if(resultCode == MercadoPagoCheckout.PAYMENT_RESULT_CODE) {
+                val payment = data?.getSerializableExtra(MercadoPagoCheckout.EXTRA_PAYMENT_RESULT) as Payment
+                if(Payment.StatusCodes.STATUS_APPROVED == payment.paymentStatus) {
+                    val fullOrder = CartViewModel.getFullOrder()
+                    orderViewModel.save(fullOrder, payment)
+                    startActivity(Intent(this, OrderActivity::class.java))
+                    finish()
+                } else {
+                    Toast.makeText(this,
+                    getString(R.string.cart_activity_payment_msg)
+                    , Toast.LENGTH_LONG).show()
+                }
+            } else if(resultCode == Activity.RESULT_CANCELED && data != null) {
+                val error = data.getSerializableExtra(MercadoPagoCheckout.EXTRA_ERROR) as MercadoPagoError
+                Log.e(this.toString(), error.message)
+            }
+        }
+    }
 }
